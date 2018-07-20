@@ -3,9 +3,7 @@ import './Cell.css';
 
 function Cell(props) {
   return (
-    <React.Fragment>
-      <div className='cell'></div>
-    </React.Fragment>
+    <div className="cell"></div>
   );
 }
 

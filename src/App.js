@@ -5,7 +5,9 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <Snake/>
+      <section className='FieldContainer'>
+        <Snake size='9' snake='' target=''/>
+      </section>
     );
   }
 }

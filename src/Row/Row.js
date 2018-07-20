@@ -1,11 +1,11 @@
 import React from 'react';
-import Row from '../Row/Row';
-import './Snake.css';
+import Cell from '../Cell/Cell';
+import './Row.css';
 
-function Snake(props) {
+function Row(props) {
   const arr = Array(Number(props.size)).fill({});
   const field = arr.map((piece, index) => 
-    <Row key={index} size={props.size}/>
+    <Cell key={index}/>
   )
   return (
     <React.Fragment>
@@ -14,4 +14,4 @@ function Snake(props) {
   );
 }
 
-export default Snake;
+export default Row;
