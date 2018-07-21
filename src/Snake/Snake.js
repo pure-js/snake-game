@@ -3,15 +3,14 @@ import Row from '../Row/Row';
 import './Snake.css';
 
 function Snake(props) {
-  const arr = Array(Number(props.size)).fill({});
-  const field = arr.map((piece, index) => 
-    <Row key={index} size={props.size}/>
-  )
-  return (
-    <React.Fragment>
-      { field }
-    </React.Fragment>
-  );
+  const arr = Array(props.size).fill({});
+  const field = arr.map((piece, index) => {
+    const snakeInRow = props.snake.filter((item) =>
+      item.y === index
+    );
+    return <Row key={index} size={props.size} snake={snakeInRow}/>;
+  });
+  return field;
 }
 
 export default Snake;

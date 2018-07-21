@@ -1,5 +1,10 @@
 .FieldContainer {
-  max-width: 400px;
-  display: grid;
-  grid-template-columns: repeat(1fr);
+  margin: 50px auto;
+  max-width: fit-content;
+  /* display: grid; */
+  /* grid-template-columns: repeat(1fr); */
+}
+
+.heading {
+  text-align: center;
 }
