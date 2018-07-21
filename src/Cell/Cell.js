@@ -3,11 +3,10 @@ import './Cell.css';
 
 function Cell(props) {
   let square;
-  // console.log(props.snake);
   if (props.snake) {
-    square = <div className="snake__body"></div>;
+    square = <div className="cell snake__body"></div>;
   } else {
-    square = <div className="cell"></div>;
+    square = <div className="cell cell_empty"></div>;
   }
   return (
     <React.Fragment>

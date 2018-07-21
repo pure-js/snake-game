@@ -1,0 +1,8 @@
+.FieldContainer {
+  margin: 50px auto;
+  max-width: fit-content;
+}
+
+.noOutline {
+  outline: none;
+}

@@ -10,7 +10,6 @@ function Row(props) {
     );
     let snake = false;
     if (snakeInCell.length > 0) {
-      console.log('gg');
       snake = true;
     }
     return <Cell key={index} snake={snake}/>;

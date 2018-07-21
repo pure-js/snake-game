@@ -1,11 +1,12 @@
 .cell {
-  background: green;
   width: 6px;
   height: 6px;
 }
 
+.cell_empty {
+  background: green;
+}
+
 .snake__body {
   background: red;
-  width: 6px;
-  height: 6px;
 }
