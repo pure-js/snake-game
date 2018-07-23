@@ -1,36 +1,7 @@
 import React, { Component } from 'react';
 import Row from '../Row/Row';
+import moveSnake from './moveSnake';
 import './Snake.css';
-
-function calcHead(headCoords, turn) {
-  console.log(headCoords);
-  const newHeadCoords = Object.assign(headCoords);
-  switch (turn) {
-    case 'ArrowUp':
-      newHeadCoords.y -= 1;
-      break;
-    case 'ArrowRight':
-      newHeadCoords.x += 1;
-      break;
-    case 'ArrowDown':
-      newHeadCoords.y += 1;
-      break;
-    case 'ArrowLeft':
-      newHeadCoords.x -= 1;
-      break;
-    default:
-      console.log('Impossible turn!');
-  }
-  console.log(headCoords);
-  return newHeadCoords;
-}
-
-function moveSnake(snake, turn) {
-  const newSnake = snake.slice();
-  const newHead = calcHead(newSnake[newSnake.length - 1], turn);
-  newSnake.push(newHead);
-  return newSnake;
-}
 
 class Snake extends Component {
   constructor(props) {
@@ -43,10 +14,11 @@ class Snake extends Component {
     this.arr = Array(size).fill({});
   }
 
-  handleKeyDown = (event) => {
-    const snake = moveSnake(this.snake, event.key);
+  handleKeyDown(key, currentSnake) {
+    console.log(key, currentSnake);
+    const newSnake = moveSnake(currentSnake, key);
     this.setState({
-      snake,
+      snake: newSnake,
     })
   }
   
@@ -58,7 +30,7 @@ class Snake extends Component {
     return (
       <div
         className='noOutline'
-        onKeyDown={this.handleKeyDown}
+        onKeyDown={(event) => this.handleKeyDown(event.key, this.snake)}
         tabIndex='0'
       >
         <section className='FieldContainer'>
