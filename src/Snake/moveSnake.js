@@ -23,10 +23,12 @@ function moveSnake(snake, turn) {
   const newSnake = snake.slice();
   const snakeHead = newSnake[newSnake.length - 1];
   const newHead = calcHead(snakeHead, turn);
-  console.log('1', newSnake);
   newSnake.push(newHead);
-  console.log('2', newSnake);
+  newSnake.shift();
   return newSnake;
 }
 
-export default moveSnake;
+export {
+  calcHead,
+  moveSnake as default,
+};
