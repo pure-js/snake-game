@@ -11,7 +11,7 @@ class App extends Component {
       {x: 14, y: 12},
       {x: 15, y: 12},
       {x: 16, y: 12},
-    ]
+    ];
     return (
       <React.Fragment>
         <h1 className='heading'>Snake game</h1>
