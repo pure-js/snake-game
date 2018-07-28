@@ -1,6 +1,59 @@
 .FieldContainer {
-  margin: 50px auto;
-  max-width: fit-content;
+  background-image:
+    repeating-linear-gradient(-45deg,
+      transparent,
+      transparent 10px,
+      black 20px,
+      black 10px),
+    repeating-linear-gradient(45deg,
+      transparent,
+      black 20px,
+      black 20px,
+      transparent 20px);
+
+  /* animation: AnimationName .9s ease infinite; */
+}
+
+@keyframes AnimationName { 
+  25% {
+    background-image: 
+      repeating-linear-gradient(-45deg,
+        transparent,
+        transparent 9px,
+        black 19px,
+        black 9px),
+      repeating-linear-gradient(45deg,
+        transparent,
+        black 19px,
+        black 19px,
+        transparent 19px);
+  }
+  50% {
+    background-image: 
+      repeating-linear-gradient(-45deg,
+        transparent,
+        transparent 10px,
+        black 18px,
+        black 10px),
+      repeating-linear-gradient(45deg,
+        transparent,
+        black 18px,
+        black 18px,
+        transparent 20px);
+  }
+  75% {
+    background-image: 
+      repeating-linear-gradient(-45deg,
+        transparent,
+        transparent 10px,
+        black 19px,
+        black 10px),
+      repeating-linear-gradient(45deg,
+        transparent,
+        black 19px,
+        black 19px,
+        transparent 19px);
+  }
 }
 
 .noOutline {

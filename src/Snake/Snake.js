@@ -1,43 +1,54 @@
 import React, { Component } from 'react';
-import Row from '../Row/Row';
 import moveSnake from './moveSnake';
 import './Snake.css';
 
 class Snake extends Component {
   constructor(props) {
     super(props);
-    const { size, snake } = this.props;
-    this.snake = snake.slice();
-    this.state = {
-      snake: this.snake,
-    }
-    this.arr = Array(size).fill({});
+    this.canvas = React.createRef();
   }
 
-  handleKeyDown(key, currentSnake) {
-    console.log(key, currentSnake);
-    const newSnake = moveSnake(currentSnake, key);
-    this.setState({
-      snake: newSnake,
-    })
+  draw = () => {
+    const canvas = this.canvas.current;
+    const ctx = canvas.getContext('2d');
+    const { position, length, thickness } = this.props.snake;
+    const { size } = this.props;
+
+    ctx.globalCompositeOperation = 'destination-over';
+    ctx.clearRect(0, 0, size, size); // clear canvas
+
+    ctx.save();
+    ctx.translate(10, 0);
+
+    ctx.fillStyle = 'rgb(200, 0, 0)';
+    ctx.fillRect(
+      position.x,
+      position.y,
+      length,
+      thickness,
+    );
+    window.requestAnimationFrame(this.draw);
+  }
+
+  componentDidMount() {
+    window.requestAnimationFrame(this.draw);
+  }
+
+  handleKeyDown = (key, currentSnake) => {
+    // const newSnake = moveSnake(currentSnake, key);
   }
   
   render() {
-    this.field = this.arr.map((piece, index) => {
-      const snakeInRow = this.snake.filter(item => item.y === index);
-      return <Row key={index} size={this.props.size} snake={snakeInRow}/>;
-    });
+    const { size } = this.props;
     return (
       <div
         className='noOutline'
         onKeyDown={(event) => this.handleKeyDown(event.key, this.snake)}
         tabIndex='0'
       >
-        <section className='FieldContainer'>
-          { this.field }
-        </section>
+        <canvas ref={this.canvas} width={size} height={size} className='FieldContainer'></canvas>
       </div>
-    );
+    );  
   }
 }
 
