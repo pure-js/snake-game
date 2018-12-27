@@ -1,5 +1,5 @@
 function calcHead(headCoords, turn) {
-  const newHeadCoords = Object.assign(headCoords);
+  const newHeadCoords = Object.assign({}, headCoords);
   switch (turn) {
     case 'ArrowUp':
       newHeadCoords.y -= 1;
@@ -14,7 +14,7 @@ function calcHead(headCoords, turn) {
       newHeadCoords.x -= 1;
       break;
     default:
-      console.log('Impossible turn!');
+      console.error('Impossible turn!');
   }
   return newHeadCoords;
 }
