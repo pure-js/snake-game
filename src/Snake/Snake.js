@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import moveSnake from './moveSnake';
+import { justDraw } from './moveSnake';
 import './Snake.css';
 
 class Snake extends PureComponent {
@@ -21,97 +21,114 @@ class Snake extends PureComponent {
     // Move snake
     // ctx.translate(0.01, 0);
 
-    // Draw body
-    ctx.fillStyle = 'rgb(39,159,39)';
-    ctx.fillRect(
-      // The x-axis coordinate of the rectangle's starting point.
-      position.x,
-      // The y-axis coordinate of the rectangle's starting point.
-      position.y,
-      // The rectangle's width. Positive values are to the right, and negative to the left.
-      length,
-      // The rectangle's height. Positive values are down, and negative are up.
-      thickness,
-    );
+    const figure1 = [
+      {
+        fill: 'rgb(39,159,39)',
+        x: position.x,
+        y: position.y,
+        width: length,
+        height: thickness,
+      },
+      {
+        fill: 'rgb(200, 0, 0)',
+        x: 150 + 60,
+        y: 120,
+        width: 10,
+        height: thickness,
+      }
+    ];
 
-    // Draw head
-    ctx.fillStyle = 'rgb(200, 0, 0)';
-    ctx.fillRect(150 + 60, 120, 10, 10);
+    justDraw(ctx, figure1);
 
     // Up
-    // Draw body
-    ctx.fillStyle = 'rgb(39,159,39)';
-    ctx.fillRect(
-      // The x-axis coordinate of the rectangle's starting point.
-      position.x + 10,
-      // The y-axis coordinate of the rectangle's starting point.
-      position.y + 31,
-      // The rectangle's width. Positive values are to the right, and negative to the left.
-      length,
-      // The rectangle's height. Positive values are down, and negative are up.
-      thickness,
-    );
+    const figure2 = [
+      {
+        fill: 'rgb(39,159,39)',
+        x: position.x + thickness,
+        y: position.y + 31,
+        width: length,
+        height: thickness,
+      },
+      {
+        fill: 'rgb(200, 0, 0)',
+        x: 150 + 60,
+        y: 120 + 31 - thickness,
+        width: thickness,
+        height: thickness,
+      }
+    ];
 
-    // Draw head
-    ctx.fillStyle = 'rgb(200, 0, 0)';
-    ctx.fillRect(150 + 60, 120 + 31 - 10, 10, 10);
+    justDraw(ctx, figure2);
 
 
     // Right
-    // Draw body
-    ctx.fillStyle = 'rgb(39,159,39)';
-    ctx.fillRect(
-      // The x-axis coordinate of the rectangle's starting point.
-      position.x + 10 + 10,
-      // The y-axis coordinate of the rectangle's starting point.
-      position.y + 61,
-      // The rectangle's width. Positive values are to the right, and negative to the left.
-      length - 10,
-      // The rectangle's height. Positive values are down, and negative are up.
-      thickness,
-    );
+     const figure3 = [
+      {
+        fill: 'rgb(39,159,39)',
+        x: position.x + thickness + thickness,
+        y: position.y + 61,
+        width: length - thickness,
+        height: thickness,
+      },
+      {
+        fill: 'rgb(39,159,39)',
+        x: 150 + 60,
+        y: 120 + 61 - thickness,
+        width: thickness,
+        height: thickness,
+      },
+      {
+        fill: 'rgb(200, 0, 0)',
+        x: 150 + 60 + thickness,
+        y: 120 + 61 - thickness,
+        width: thickness,
+        height: thickness,
+      }
+    ];
 
-    // Draw body
-    ctx.fillStyle = 'rgb(39,159,39)';
-    ctx.fillRect(150 + 60, 120 + 61 - 10, 10, 10);
-
-    // Draw head
-    ctx.fillStyle = 'rgb(200, 0, 0)';
-    ctx.fillRect(150 + 60 + 10, 120 + 61 - 10, 10, 10);
-
+    justDraw(ctx, figure3);
 
     // Down
-    // Draw body
-    ctx.fillStyle = 'rgb(39,159,39)';
-    ctx.fillRect(
-      // The x-axis coordinate of the rectangle's starting point.
-      position.x + 10 + 10 + 10,
-      // The y-axis coordinate of the rectangle's starting point.
-      position.y + 91,
-      // The rectangle's width. Positive values are to the right, and negative to the left.
-      length - 10 - 10,
-      // The rectangle's height. Positive values are down, and negative are up.
-      thickness,
-    );
+    const figure4 = [
+      {
+        fill: 'rgb(39,159,39)',
+        x: position.x + thickness + thickness + thickness,
+        y: position.y + 91,
+        width: length - thickness - thickness,
+        height: thickness,
+      },
+      {
+        fill: 'rgb(39,159,39)',
+        x: 150 + 60,
+        y: 120 + 91 - thickness,
+        width: thickness,
+        height: thickness,
+      },
+      {
+        fill: 'rgb(39,159,39)',
+        x: 150 + 60 + thickness,
+        y: 120 + 91 - thickness,
+        width: thickness,
+        height: thickness,
+      },
+      {
+        fill: 'rgb(200, 0, 0)',
+        x: 150 + 60 + thickness,
+        y: 120 + 91 - thickness + thickness,
+        width: thickness,
+        height: thickness,
+      }
+    ];
 
-    // Draw body
-    ctx.fillStyle = 'rgb(39,159,39)';
-    ctx.fillRect(150 + 60, 120 + 91 - 10, 10, 10);
-
-    // Draw body
-    ctx.fillStyle = 'rgb(39,159,39)';
-    ctx.fillRect(150 + 60 + 10, 120 + 91 - 10, 10, 10);
-
-    // Draw head
-    ctx.fillStyle = 'rgb(200, 0, 0)';
-    ctx.fillRect(150 + 60 + 10, 120 + 91 - 10 + 10, 10, 10);
+    justDraw(ctx, figure4);
 
 
-    window.requestAnimationFrame(this.draw);
+    // window.requestAnimationFrame(this.draw);
   }
 
   componentDidMount() {
-    window.requestAnimationFrame(this.draw);
+    // window.requestAnimationFrame(this.draw);
+    this.draw();
   }
 
   handleKeyDown = (key, currentSnake) => {

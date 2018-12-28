@@ -28,7 +28,16 @@ function moveSnake(snake, turn) {
   return newSnake;
 }
 
+function justDraw(canvasContext, rectangles) {
+  for (const rect of rectangles) {
+    console.log(rect, rect.fill);
+    canvasContext.fillStyle = rect.fill;
+    canvasContext.fillRect(rect.x, rect.y, rect.width, rect.height);
+  }
+}
+
 export {
   calcHead,
+  justDraw,
   moveSnake as default,
 };
