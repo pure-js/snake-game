@@ -28,9 +28,39 @@ function moveSnake(snake, turn) {
   return newSnake;
 }
 
+function getNextRectangles(prevRectangles, turn, thickness) {
+  const nextRectangles = JSON.parse(JSON.stringify(prevRectangles));
+  if (turn === 'ArrowUp') {
+    nextRectangles[0].x += thickness;
+    nextRectangles[0].y += 31;
+    // head
+    nextRectangles[1].y += 31 - thickness;
+  }
+
+  if (turn === 'ArrowRight') {
+    nextRectangles[0].x += thickness + thickness;
+    nextRectangles[0].y += 61;
+    nextRectangles[0].width -= thickness;
+
+    nextRectangles[1].fill = 'rgb(39,159,39)';
+    nextRectangles[1].y += 61 - thickness;
+
+    const rect = {
+      fill: 'rgb(200, 0, 0)',
+      x: 150 + 60 + thickness,
+      y: 120 + 61 - thickness,
+      width: thickness,
+      height: thickness,
+    }
+
+    nextRectangles.push(rect);
+  }
+  
+  return nextRectangles;
+}
+
 function justDraw(canvasContext, rectangles) {
   for (const rect of rectangles) {
-    console.log(rect, rect.fill);
     canvasContext.fillStyle = rect.fill;
     canvasContext.fillRect(rect.x, rect.y, rect.width, rect.height);
   }
@@ -38,6 +68,7 @@ function justDraw(canvasContext, rectangles) {
 
 export {
   calcHead,
+  getNextRectangles,
   justDraw,
   moveSnake as default,
 };

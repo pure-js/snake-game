@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { justDraw } from './moveSnake';
+import { justDraw, getNextRectangles } from './moveSnake';
 import './Snake.css';
 
 class Snake extends PureComponent {
@@ -33,7 +33,7 @@ class Snake extends PureComponent {
         fill: 'rgb(200, 0, 0)',
         x: 150 + 60,
         y: 120,
-        width: 10,
+        width: thickness,
         height: thickness,
       }
     ];
@@ -41,28 +41,11 @@ class Snake extends PureComponent {
     justDraw(ctx, figure1);
 
     // Up
-    const figure2 = [
-      {
-        fill: 'rgb(39,159,39)',
-        x: position.x + thickness,
-        y: position.y + 31,
-        width: length,
-        height: thickness,
-      },
-      {
-        fill: 'rgb(200, 0, 0)',
-        x: 150 + 60,
-        y: 120 + 31 - thickness,
-        width: thickness,
-        height: thickness,
-      }
-    ];
-
+    const figure2 = getNextRectangles(figure1, 'ArrowUp', 10);
     justDraw(ctx, figure2);
 
-
     // Right
-     const figure3 = [
+     const figure3444 = [
       {
         fill: 'rgb(39,159,39)',
         x: position.x + thickness + thickness,
@@ -86,6 +69,7 @@ class Snake extends PureComponent {
       }
     ];
 
+    const figure3 = getNextRectangles(figure1, 'ArrowRight', 10);
     justDraw(ctx, figure3);
 
     // Down
