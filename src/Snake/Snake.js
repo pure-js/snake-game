@@ -62,7 +62,9 @@ class Snake extends PureComponent {
     const ctx = this.canvas.current.getContext('2d');
     this.snake = getNextRectangles(currentSnake, key, 10);
     const last = currentSnake[0];
-    ctx.clearRect(last.x, last.y, last.width, last.height); // clear canvas
+    const first = currentSnake[currentSnake.length - 1];
+    ctx.clearRect(last.x, last.y, last.width, last.height); // clear last element
+    ctx.clearRect(first.x, first.y, first.width, first.height); // clear head
     justDraw(ctx, this.snake);
   }
   
