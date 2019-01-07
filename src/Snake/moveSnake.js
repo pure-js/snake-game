@@ -1,22 +1,27 @@
-function calcHead(headCoords, turn) {
-  const newHeadCoords = Object.assign({}, headCoords);
+function calcHead(x, y, turn, dimenision) {
   switch (turn) {
     case 'ArrowUp':
-      newHeadCoords.y -= 1;
+      y -= dimenision;
       break;
     case 'ArrowRight':
-      newHeadCoords.x += 1;
+      x += dimenision;
       break;
     case 'ArrowDown':
-      newHeadCoords.y += 1;
+      y += dimenision;
       break;
     case 'ArrowLeft':
-      newHeadCoords.x -= 1;
+      x -= dimenision;
       break;
     default:
       console.error('Impossible turn!');
   }
-  return newHeadCoords;
+
+  return {
+    x,
+    y,
+    width: dimenision,
+    height: dimenision,
+  };
 }
 
 function moveSnake(snake, turn) {
@@ -30,32 +35,22 @@ function moveSnake(snake, turn) {
 
 function getNextRectangles(prevRectangles, turn, thickness) {
   const nextRectangles = JSON.parse(JSON.stringify(prevRectangles));
-  if (turn === 'ArrowUp') {
-    nextRectangles[0].x += thickness;
-    nextRectangles[0].y += 31;
-    // head
-    nextRectangles[1].y += 31 - thickness;
+
+  // Remove end of sanke
+  nextRectangles.shift();
+  const head = nextRectangles[nextRectangles.length - 1];
+
+  function paintHead() {
+    nextRectangles.map(square => {
+      square.fill = 'rgb(39,159,39)';
+    })
+    const head = nextRectangles[nextRectangles.length - 1];
+    head.fill = 'rgb(200, 0, 0)';
   }
 
-  if (turn === 'ArrowRight') {
-    nextRectangles[0].x += thickness + thickness;
-    nextRectangles[0].y += 61;
-    nextRectangles[0].width -= thickness;
-
-    nextRectangles[1].fill = 'rgb(39,159,39)';
-    nextRectangles[1].y += 61 - thickness;
-
-    const rect = {
-      fill: 'rgb(200, 0, 0)',
-      x: 150 + 60 + thickness,
-      y: 120 + 61 - thickness,
-      width: thickness,
-      height: thickness,
-    }
-
-    nextRectangles.push(rect);
-  }
-  
+  const { x, y } = head;
+  nextRectangles.push(calcHead(x, y, turn, thickness));
+  paintHead();  
   return nextRectangles;
 }
 

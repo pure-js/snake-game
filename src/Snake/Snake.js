@@ -5,7 +5,9 @@ import './Snake.css';
 class Snake extends PureComponent {
   constructor(props) {
     super(props);
+    this.snake = [];
     this.canvas = React.createRef();
+    // this.ctx = this.canvas.current.getContext('2d');
   }
 
   draw = () => {
@@ -18,94 +20,26 @@ class Snake extends PureComponent {
     ctx.clearRect(0, 0, size, size); // clear canvas
 
     ctx.save();
-    // Move snake
-    // ctx.translate(0.01, 0);
 
-    const figure1 = [
-      {
-        fill: 'rgb(39,159,39)',
-        x: position.x,
-        y: position.y,
-        width: length,
-        height: thickness,
-      },
-      {
-        fill: 'rgb(200, 0, 0)',
-        x: 150 + 60,
-        y: 120,
-        width: thickness,
-        height: thickness,
+    function calcInitialSnake(position, length, thickness) {
+      const snake = [];
+      const arrLength = length / thickness;
+      for (let i = 0; i < arrLength; i++) {
+        const z = {
+          fill: 'rgb(39,159,39)',
+          x: position.x + (i * thickness),
+          y: position.y,
+          width: thickness,
+          height: thickness,
+        };
+        snake.push(z);
       }
-    ];
+      snake[snake.length - 1].fill = 'rgb(200, 0, 0)';
+      return snake;
+    }
 
-    justDraw(ctx, figure1);
-
-    // Up
-    const figure2 = getNextRectangles(figure1, 'ArrowUp', 10);
-    justDraw(ctx, figure2);
-
-    // Right
-     const figure3444 = [
-      {
-        fill: 'rgb(39,159,39)',
-        x: position.x + thickness + thickness,
-        y: position.y + 61,
-        width: length - thickness,
-        height: thickness,
-      },
-      {
-        fill: 'rgb(39,159,39)',
-        x: 150 + 60,
-        y: 120 + 61 - thickness,
-        width: thickness,
-        height: thickness,
-      },
-      {
-        fill: 'rgb(200, 0, 0)',
-        x: 150 + 60 + thickness,
-        y: 120 + 61 - thickness,
-        width: thickness,
-        height: thickness,
-      }
-    ];
-
-    const figure3 = getNextRectangles(figure1, 'ArrowRight', 10);
-    justDraw(ctx, figure3);
-
-    // Down
-    const figure4 = [
-      {
-        fill: 'rgb(39,159,39)',
-        x: position.x + thickness + thickness + thickness,
-        y: position.y + 91,
-        width: length - thickness - thickness,
-        height: thickness,
-      },
-      {
-        fill: 'rgb(39,159,39)',
-        x: 150 + 60,
-        y: 120 + 91 - thickness,
-        width: thickness,
-        height: thickness,
-      },
-      {
-        fill: 'rgb(39,159,39)',
-        x: 150 + 60 + thickness,
-        y: 120 + 91 - thickness,
-        width: thickness,
-        height: thickness,
-      },
-      {
-        fill: 'rgb(200, 0, 0)',
-        x: 150 + 60 + thickness,
-        y: 120 + 91 - thickness + thickness,
-        width: thickness,
-        height: thickness,
-      }
-    ];
-
-    justDraw(ctx, figure4);
-
+    this.snake = calcInitialSnake(position, length, thickness);
+    justDraw(ctx, this.snake);
 
     // window.requestAnimationFrame(this.draw);
   }
@@ -116,7 +50,11 @@ class Snake extends PureComponent {
   }
 
   handleKeyDown = (key, currentSnake) => {
-    // const newSnake = moveSnake(currentSnake, key);
+    console.log(key);
+    const ctx = this.canvas.current.getContext('2d');
+    this.snake = getNextRectangles(currentSnake, key, 10);
+    ctx.clearRect(0, 0, 500, 500); // clear canvas
+    justDraw(ctx, this.snake);
   }
   
   render() {
