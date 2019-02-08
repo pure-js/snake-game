@@ -7,10 +7,6 @@ class Snake extends PureComponent {
     super(props);
     this.snake = [];
     this.canvas = React.createRef();
-    // this.state = {
-    //   height: window,
-    //   width: this.props.size,
-    // }
     // this.ctx = this.canvas.current.getContext('2d');
   }
 
@@ -52,9 +48,7 @@ class Snake extends PureComponent {
     // window.requestAnimationFrame(this.draw);
     this.draw();
     this.width = window.innerWidth;
-    // this.setState((state) => {
-
-    // })
+    this.canvas.current.focus();
   }
 
   handleKeyDown = (key, currentSnake) => {
@@ -69,14 +63,14 @@ class Snake extends PureComponent {
   }
   
   render() {
-    const { size } = this.props;
+    // const { size } = this.props;
     return (
       <div
         className='noOutline'
         onKeyDown={(event) => this.handleKeyDown(event.key, this.snake)}
         tabIndex='0'
       >
-        <canvas ref={this.canvas} width={window.innerWidth} height={window.innerHeight - 80} className='FieldContainer'></canvas>
+        <canvas tabIndex="0" ref={this.canvas} width={window.innerWidth} height={window.innerHeight - 80} className='FieldContainer'></canvas>
       </div>
     );  
   }
