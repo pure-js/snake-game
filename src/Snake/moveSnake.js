@@ -41,16 +41,16 @@ function getNextRectangles(prevRectangles, turn, thickness) {
   const head = nextRectangles[nextRectangles.length - 1];
 
   function paintHead() {
-    nextRectangles.map(square => {
+    nextRectangles.forEach((square) => {
       square.fill = 'rgb(39,159,39)';
-    })
+    });
     const head = nextRectangles[nextRectangles.length - 1];
     head.fill = 'rgb(200, 0, 0)';
   }
 
   const { x, y } = head;
   nextRectangles.push(calcHead(x, y, turn, thickness));
-  paintHead();  
+  paintHead();
   return nextRectangles;
 }
 
