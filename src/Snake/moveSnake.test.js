@@ -1,73 +1,75 @@
-import moveSnake, { calcHead } from './moveSnake';
+import { expect, test } from 'vitest'
+
+import { getNextSnakePos, getNextHeadPos } from './moveSnake';
 
 test('calc head position', () => {
-  expect(calcHead({ x: 11, y: 12 }, 'ArrowUp')).toEqual({ x: 11, y: 11 });
-  expect(calcHead({ x: 11, y: 12 }, 'ArrowRight')).toEqual({ x: 12, y: 12 });
-  expect(calcHead({ x: 11, y: 12 }, 'ArrowDown')).toEqual({ x: 11, y: 13 });
-  expect(calcHead({ x: 11, y: 12 }, 'ArrowLeft')).toEqual({ x: 10, y: 12 });
+  expect(getNextHeadPos({ x: 11, y: 12 }, 'north')).toEqual({ x: 11, y: 11 });
+  expect(getNextHeadPos({ x: 11, y: 12 }, 'east')).toEqual({ x: 12, y: 12 });
+  expect(getNextHeadPos({ x: 11, y: 12 }, 'south')).toEqual({ x: 11, y: 13 });
+  expect(getNextHeadPos({ x: 11, y: 12 }, 'west')).toEqual({ x: 10, y: 12 });
 });
 
-test('correct snake after turn right', () => {
-  const snake = [
+test('the correct position of the snake after pressing the right arrow', () => {
+  const snakePos = [
     { x: 11, y: 12 },
     { x: 12, y: 12 },
     { x: 13, y: 12 },
   ];
 
-  const movedSnake = [
+  const nextSnakePos = [
     { x: 12, y: 12 },
     { x: 13, y: 12 },
     { x: 14, y: 12 },
   ];
 
-  expect(moveSnake(snake, 'ArrowRight')).toEqual(movedSnake);
+  expect(getNextSnakePos(snakePos, 'east')).toEqual(nextSnakePos);
 });
 
-test('correct snake after turn left', () => {
-  const snake = [
+test('the correct position of the snake after pressing the left arrow', () => {
+  const snakePos = [
     { x: 10, y: 11 },
     { x: 11, y: 11 },
     { x: 12, y: 11 },
   ];
 
-  const movedSnake = [
+  const nextSnakePos = [
     { x: 10, y: 11 },
     { x: 11, y: 11 },
     { x: 12, y: 11 },
   ];
 
-  expect(moveSnake(snake, 'ArrowLeft')).toEqual(movedSnake);
+  expect(getNextSnakePos(snakePos, 'west')).toEqual(nextSnakePos);
 });
 
 
-test('correct snake after turn up', () => {
-  const snake = [
+test('the correct position of the snake after pressing the up arrow', () => {
+  const snakePos = [
     { x: 21, y: 12 },
     { x: 22, y: 12 },
     { x: 23, y: 12 },
   ];
 
-  const movedSnake = [
+  const nextSnakePos = [
     { x: 22, y: 12 },
     { x: 23, y: 12 },
-    { x: 23, y: 13 },
+    { x: 23, y: 11 },
   ];
 
-  expect(moveSnake(snake, 'ArrowUp')).toEqual(movedSnake);
+  expect(getNextSnakePos(snakePos, 'north')).toEqual(nextSnakePos);
 });
 
-test('correct snake after turn down', () => {
-  const snake = [
+test('the correct position of the snake after pressing the down arrow', () => {
+  const snakePos = [
     { x: 11, y: 12 },
     { x: 12, y: 12 },
     { x: 13, y: 12 },
   ];
 
-  const movedSnake = [
+  const nextSnakePos = [
     { x: 12, y: 12 },
     { x: 13, y: 12 },
     { x: 13, y: 13 },
   ];
 
-  expect(moveSnake(snake, 'ArrowDown')).toEqual(movedSnake);
+  expect(getNextSnakePos(snakePos, 'south')).toEqual(nextSnakePos);
 });

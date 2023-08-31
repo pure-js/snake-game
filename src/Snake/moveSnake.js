@@ -1,15 +1,15 @@
-function calcHead(x, y, turn, dimenision) {
-  switch (turn) {
-    case 'ArrowUp':
+function getNextHeadPos({ x, y }, direction, dimenision = 1) {
+  switch (direction) {
+    case 'north':
       y -= dimenision;
       break;
-    case 'ArrowRight':
+    case 'east':
       x += dimenision;
       break;
-    case 'ArrowDown':
+    case 'south':
       y += dimenision;
       break;
-    case 'ArrowLeft':
+    case 'west':
       x -= dimenision;
       break;
     default:
@@ -19,15 +19,15 @@ function calcHead(x, y, turn, dimenision) {
   return {
     x,
     y,
-    width: dimenision,
-    height: dimenision,
+    // width: dimenision,
+    // height: dimenision,
   };
 }
 
-function moveSnake(snake, turn) {
-  const newSnake = snake.slice();
+function getNextSnakePos(snakePos, direction) {
+  const newSnake = snakePos.slice();
   const snakeHead = newSnake[newSnake.length - 1];
-  const newHead = calcHead(snakeHead, turn);
+  const newHead = getNextHeadPos(snakeHead, direction);
   newSnake.push(newHead);
   newSnake.shift();
   return newSnake;
@@ -49,7 +49,7 @@ function getNextRectangles(prevRectangles, turn, thickness) {
   }
 
   const { x, y } = head;
-  nextRectangles.push(calcHead(x, y, turn, thickness));
+  nextRectangles.push(getNextHeadPos(x, y, turn, thickness));
   paintHead();
   return nextRectangles;
 }
@@ -62,8 +62,9 @@ function justDraw(canvasContext, rectangles) {
 }
 
 export {
-  calcHead,
+  getNextHeadPos,
   getNextRectangles,
   justDraw,
-  moveSnake as default,
+  getNextSnakePos,
+  getNextSnakePos as default,
 };
