@@ -1,12 +1,8 @@
 {
   "name": "snake-game",
   "version": "0.1.0",
-  "dependencies": {
-    "gh-pages": "^6.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1"
-  },
+  "description": "The Snake Game.",
+  "main": "src/index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "predeploy": "npm run build",
@@ -15,8 +11,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom"
   },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
-  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pure-js/snake-game.git"
@@ -33,7 +27,14 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "dependencies": {
+    "gh-pages": "^6.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1"
+  },
   "devDependencies": {
-    "eslint": "8.48.0"
+    "eslint": "8.48.0",
+    "vitest": "^0.34.3"
   }
 }
