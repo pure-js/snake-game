@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "description": "The Snake Game.",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom"
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
@@ -28,13 +29,14 @@
     "not op_mini all"
   ],
   "dependencies": {
-    "gh-pages": "^6.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "eslint": "8.48.0",
+    "gh-pages": "^6.0.0",
+    "react-scripts": "^5.0.1",
+    "typescript": "^5.2.2",
     "vitest": "^0.34.3"
   }
 }
