@@ -1,6 +1,22 @@
 import React, { PureComponent } from 'react';
+
 import { justDraw, getNextRectangles } from './moveSnake.js';
 import './Snake.css';
+
+const getTurnByKey = (key) => {
+  switch(key) {
+    case 'ArrowUp':
+      return 'north';
+    case 'ArrowRight':
+      return 'east';
+    case 'ArrowDown':
+      return 'south';
+    case 'ArrowLeft':
+      return 'west';
+    default:
+      console.log('Unexpecyed key!');
+  }
+}
 
 class Snake extends PureComponent {
   constructor(props) {
@@ -54,7 +70,7 @@ class Snake extends PureComponent {
   handleKeyDown = (key, currentSnake) => {
     console.log(key);
     const ctx = this.canvas.current.getContext('2d');
-    this.snake = getNextRectangles(currentSnake, key, 10);
+    this.snake = getNextRectangles(currentSnake, getTurnByKey(key), 10);
     const last = currentSnake[0];
     const first = currentSnake[currentSnake.length - 1];
     ctx.clearRect(last.x, last.y, last.width, last.height); // clear last element

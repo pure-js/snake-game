@@ -67,7 +67,7 @@ export function getNextRectangles(prevRectangles, turn, thickness) {
   }
 
   const { x, y } = head;
-  nextRectangles.push(getNextHeadPos(x, y, turn, thickness));
+  nextRectangles.push(getNextHeadPos({ x: x, y: y }, turn, thickness));
   paintHead();
   return nextRectangles;
 }
