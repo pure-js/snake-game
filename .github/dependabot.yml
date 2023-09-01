@@ -32,3 +32,11 @@ updates:
       material-ui-group:
         patterns:
           - '@material-ui*'
+      vitest-group:
+        patterns:
+          - vitest
+          - '@vitest/*'
+      vite-group:
+        patterns:
+          - vite
+          - '@vitejs/*'

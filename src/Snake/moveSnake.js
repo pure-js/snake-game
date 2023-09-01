@@ -29,7 +29,7 @@ export function isItPossibleToMove(snakePos, direction) {
   const snakeHead = newSnake[newSnake.length - 1];
   const newHead = getNextHeadPos(snakeHead, direction);
   const found = newSnake.find(
-    (part) => (part.x === newHead.x) && (part.y === newHead.y),
+    (part) => part.x === newHead.x && part.y === newHead.y,
   );
   return found ? false : true;
 }

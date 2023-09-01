@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Snake from './Snake/Snake';
+import Snake from './Snake/Snake.jsx';
 import './App.css';
 
 class App extends Component {

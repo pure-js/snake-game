@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { justDraw, getNextRectangles } from './moveSnake';
+import { justDraw, getNextRectangles } from './moveSnake.js';
 import './Snake.css';
 
 class Snake extends PureComponent {
