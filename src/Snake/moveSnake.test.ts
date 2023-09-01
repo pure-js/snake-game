@@ -10,18 +10,26 @@ test('Calculate Sneak head position', () => {
   expect(getNextHeadPos({ x: 11, y: 12 }, 'north')).toStrictEqual({
     x: 11,
     y: 11,
+    width: 1,
+    height: 1,
   });
   expect(getNextHeadPos({ x: 11, y: 12 }, 'east')).toStrictEqual({
     x: 12,
     y: 12,
+    width: 1,
+    height: 1,
   });
   expect(getNextHeadPos({ x: 11, y: 12 }, 'south')).toStrictEqual({
     x: 11,
     y: 13,
+    width: 1,
+    height: 1,
   });
   expect(getNextHeadPos({ x: 11, y: 12 }, 'west')).toStrictEqual({
     x: 10,
     y: 12,
+    width: 1,
+    height: 1,
   });
 });
 
@@ -40,7 +48,7 @@ describe('the correct position of the snake after pressing the right arrow - Eas
     const nextSnakePos = [
       { x: 12, y: 12 },
       { x: 13, y: 12 },
-      { x: 14, y: 12 },
+      { x: 14, y: 12, width: 1, height: 1 },
     ];
 
     expect(snakeHandling(snakePos, 'east')).toStrictEqual(nextSnakePos);
@@ -79,7 +87,7 @@ describe('the correct position of the snake after pressing the up arrow - North 
   const nextSnakePos = [
     { x: 22, y: 12 },
     { x: 23, y: 12 },
-    { x: 23, y: 11 },
+    { x: 23, y: 11, width: 1, height: 1 },
   ];
 
   test('Possibility to move', () => {
@@ -101,7 +109,7 @@ describe('the correct position of the snake after pressing the down arrow - Sout
   const nextSnakePos = [
     { x: 12, y: 12 },
     { x: 13, y: 12 },
-    { x: 13, y: 13 },
+    { x: 13, y: 13, width: 1, height: 1 },
   ];
 
   test('Possibility to move', () => {

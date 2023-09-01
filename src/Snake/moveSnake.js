@@ -19,8 +19,8 @@ export function getNextHeadPos({ x, y }, direction, dimenision = 1) {
   return {
     x,
     y,
-    // width: dimenision,
-    // height: dimenision,
+    width: dimenision, // TODO: write decorator
+    height: dimenision,
   };
 }
 

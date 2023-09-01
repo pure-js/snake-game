@@ -4,7 +4,7 @@ import { justDraw, getNextRectangles } from './moveSnake.js';
 import './Snake.css';
 
 const getTurnByKey = (key) => {
-  switch(key) {
+  switch (key) {
     case 'ArrowUp':
       return 'north';
     case 'ArrowRight':
@@ -16,7 +16,7 @@ const getTurnByKey = (key) => {
     default:
       console.log('Unexpecyed key!');
   }
-}
+};
 
 class Snake extends PureComponent {
   constructor(props) {
