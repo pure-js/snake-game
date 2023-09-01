@@ -1,4 +1,4 @@
-function getNextHeadPos({ x, y }, direction, dimenision = 1) {
+export function getNextHeadPos({ x, y }, direction, dimenision = 1) {
   switch (direction) {
     case 'north':
       y -= dimenision;
@@ -24,7 +24,17 @@ function getNextHeadPos({ x, y }, direction, dimenision = 1) {
   };
 }
 
-function getNextSnakePos(snakePos, direction) {
+export function isItPossibleToMove(snakePos, direction) {
+  const newSnake = snakePos.slice();
+  const snakeHead = newSnake[newSnake.length - 1];
+  const newHead = getNextHeadPos(snakeHead, direction);
+  const found = newSnake.find(
+    (part) => (part.x === newHead.x) && (part.y === newHead.y),
+  );
+  return found ? false : true;
+}
+
+export function getNextSnakePos(snakePos, direction) {
   const newSnake = snakePos.slice();
   const snakeHead = newSnake[newSnake.length - 1];
   const newHead = getNextHeadPos(snakeHead, direction);
@@ -33,7 +43,15 @@ function getNextSnakePos(snakePos, direction) {
   return newSnake;
 }
 
-function getNextRectangles(prevRectangles, turn, thickness) {
+export function snakeHandling(snakePos, direction) {
+  if (isItPossibleToMove(snakePos, direction)) {
+    return getNextSnakePos(snakePos, direction);
+  } else {
+    return snakePos;
+  }
+}
+
+export function getNextRectangles(prevRectangles, turn, thickness) {
   const nextRectangles = JSON.parse(JSON.stringify(prevRectangles));
 
   // Remove end of sanke
@@ -54,17 +72,11 @@ function getNextRectangles(prevRectangles, turn, thickness) {
   return nextRectangles;
 }
 
-function justDraw(canvasContext, rectangles) {
+export function justDraw(canvasContext, rectangles) {
   for (const rect of rectangles) {
     canvasContext.fillStyle = rect.fill;
     canvasContext.fillRect(rect.x, rect.y, rect.width, rect.height);
   }
 }
 
-export {
-  getNextHeadPos,
-  getNextRectangles,
-  justDraw,
-  getNextSnakePos,
-  getNextSnakePos as default,
-};
+export { snakeHandling as default };
