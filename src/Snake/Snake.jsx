@@ -1,6 +1,22 @@
 import React, { PureComponent } from 'react';
-import { justDraw, getNextRectangles } from './moveSnake';
+
+import { justDraw, getNextRectangles } from './moveSnake.js';
 import './Snake.css';
+
+const getTurnByKey = (key) => {
+  switch (key) {
+    case 'ArrowUp':
+      return 'north';
+    case 'ArrowRight':
+      return 'east';
+    case 'ArrowDown':
+      return 'south';
+    case 'ArrowLeft':
+      return 'west';
+    default:
+      console.log('Unexpecyed key!');
+  }
+};
 
 class Snake extends PureComponent {
   constructor(props) {
@@ -27,7 +43,7 @@ class Snake extends PureComponent {
       for (let i = 0; i < arrLength; i++) {
         const z = {
           fill: 'rgb(39,159,39)',
-          x: position.x + (i * thickness),
+          x: position.x + i * thickness,
           y: position.y,
           width: thickness,
           height: thickness,
@@ -42,7 +58,7 @@ class Snake extends PureComponent {
     justDraw(ctx, this.snake);
 
     // window.requestAnimationFrame(this.draw);
-  }
+  };
 
   componentDidMount() {
     // window.requestAnimationFrame(this.draw);
@@ -54,25 +70,31 @@ class Snake extends PureComponent {
   handleKeyDown = (key, currentSnake) => {
     console.log(key);
     const ctx = this.canvas.current.getContext('2d');
-    this.snake = getNextRectangles(currentSnake, key, 10);
+    this.snake = getNextRectangles(currentSnake, getTurnByKey(key), 10);
     const last = currentSnake[0];
     const first = currentSnake[currentSnake.length - 1];
     ctx.clearRect(last.x, last.y, last.width, last.height); // clear last element
     ctx.clearRect(first.x, first.y, first.width, first.height); // clear head
     justDraw(ctx, this.snake);
-  }
-  
+  };
+
   render() {
     // const { size } = this.props;
     return (
       <div
-        className='noOutline'
+        className="noOutline"
         onKeyDown={(event) => this.handleKeyDown(event.key, this.snake)}
-        tabIndex='0'
+        tabIndex="0"
       >
-        <canvas tabIndex="0" ref={this.canvas} width={window.innerWidth} height={window.innerHeight - 80} className='FieldContainer'></canvas>
+        <canvas
+          tabIndex="0"
+          ref={this.canvas}
+          width={window.innerWidth}
+          height={window.innerHeight - 80}
+          className="FieldContainer"
+        ></canvas>
       </div>
-    );  
+    );
   }
 }
 
