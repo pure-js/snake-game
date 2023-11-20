@@ -23,8 +23,8 @@ devDependencies:
     specifier: 8.48.0
     version: 8.48.0
   gh-pages:
-    specifier: ^6.0.0
-    version: 6.0.0
+    specifier: ^6.1.0
+    version: 6.1.0
   prettier:
     specifier: 3.0.3
     version: 3.0.3
@@ -1010,8 +1010,8 @@ packages:
     resolution: {integrity: sha512-Hm0ixYtaSZ/V7C8FJrtZIuBBI+iSgL+1Aq82zSu8VQNB4S3Gk8e7Qs3VwBDJAhmRZcFqkl3tQu36g/Foh5I5ig==}
     dev: true
 
-  /gh-pages@6.0.0:
-    resolution: {integrity: sha512-FXZWJRsvP/fK2HJGY+Di6FRNHvqFF6gOIELaopDjXXgjeOYSNURcuYwEO/6bwuq6koP5Lnkvnr5GViXzuOB89g==}
+  /gh-pages@6.1.0:
+    resolution: {integrity: sha512-MdXigvqN3I66Y+tAZsQJMzpBWQOI1snD6BYuECmP+GEdryYMMOQvzn4AConk/+qNg/XIuQhB1xNGrl3Rmj1iow==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
