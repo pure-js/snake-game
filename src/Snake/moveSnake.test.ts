@@ -1,9 +1,9 @@
 import { describe, expect, test } from 'vitest';
 
 import {
-  snakeHandling,
   getNextHeadPos,
   isItPossibleToMove,
+  snakeHandling,
 } from './moveSnake.js';
 
 test('Calculate Sneak head position', () => {

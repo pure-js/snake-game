@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import { justDraw, getNextRectangles } from './moveSnake.js';
+import { getNextRectangles, justDraw } from './moveSnake.js';
 import './Snake.css';
 
 const getTurnByKey = (key) => {
